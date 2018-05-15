@@ -26,7 +26,7 @@ CREATE TABLE `Sale` (
   `Sale_ID` int(11) NOT NULL AUTO_INCREMENT,
   `saletime` datetime NOT NULL,
   PRIMARY KEY (`Sale_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,6 +35,7 @@ CREATE TABLE `Sale` (
 
 LOCK TABLES `Sale` WRITE;
 /*!40000 ALTER TABLE `Sale` DISABLE KEYS */;
+INSERT INTO `Sale` VALUES (1,'2018-04-16 16:53:19');
 /*!40000 ALTER TABLE `Sale` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -49,6 +50,7 @@ CREATE TABLE `SaleItem` (
   `Sale_ID` int(11) NOT NULL,
   `SI_ID` int(11) NOT NULL,
   `qty` int(11) NOT NULL,
+  `Price` int(11) NOT NULL,
   KEY `Sale_ID` (`Sale_ID`),
   KEY `SI_ID` (`SI_ID`),
   CONSTRAINT `SaleItem_ibfk_1` FOREIGN KEY (`Sale_ID`) REFERENCES `Sale` (`Sale_ID`),
@@ -62,6 +64,7 @@ CREATE TABLE `SaleItem` (
 
 LOCK TABLES `SaleItem` WRITE;
 /*!40000 ALTER TABLE `SaleItem` DISABLE KEYS */;
+INSERT INTO `SaleItem` VALUES (1,1,15,0);
 /*!40000 ALTER TABLE `SaleItem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -76,9 +79,10 @@ CREATE TABLE `StockItem` (
   `SI_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(64) NOT NULL,
   `Quantity` int(11) NOT NULL,
+  `Price` int(11) NOT NULL,
   PRIMARY KEY (`SI_ID`),
   UNIQUE KEY `Name` (`Name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,6 +91,7 @@ CREATE TABLE `StockItem` (
 
 LOCK TABLES `StockItem` WRITE;
 /*!40000 ALTER TABLE `StockItem` DISABLE KEYS */;
+INSERT INTO `StockItem` VALUES (1,'a',-10,0),(2,'b',0,0);
 /*!40000 ALTER TABLE `StockItem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,6 +119,7 @@ CREATE TABLE `StockItemOrder` (
 
 LOCK TABLES `StockItemOrder` WRITE;
 /*!40000 ALTER TABLE `StockItemOrder` DISABLE KEYS */;
+INSERT INTO `StockItemOrder` VALUES (1,1,5);
 /*!40000 ALTER TABLE `StockItemOrder` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,7 +134,7 @@ CREATE TABLE `StockOrder` (
   `SO_ID` int(11) NOT NULL AUTO_INCREMENT,
   `orderdate` datetime NOT NULL,
   PRIMARY KEY (`SO_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137,6 +143,7 @@ CREATE TABLE `StockOrder` (
 
 LOCK TABLES `StockOrder` WRITE;
 /*!40000 ALTER TABLE `StockOrder` DISABLE KEYS */;
+INSERT INTO `StockOrder` VALUES (1,'2018-04-16 16:51:35');
 /*!40000 ALTER TABLE `StockOrder` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -149,4 +156,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-13 14:19:28
+-- Dump completed on 2018-05-15 19:26:13

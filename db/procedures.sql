@@ -7,7 +7,7 @@ DROP PROCEDURE IF EXISTS AddItem; //
 CREATE PROCEDURE AddItem(item_name VARCHAR(64))
 MODIFIES SQL DATA
 BEGIN
-	INSERT INTO StockItem(Name, Quantity) VALUES (item_name, 0);
+	INSERT INTO StockItem(Name, Quantity, Price) VALUES (item_name, 0, 0);
 END
 //
 
@@ -62,8 +62,8 @@ DROP PROCEDURE IF EXISTS SellItem; //
 CREATE PROCEDURE SellItem(item_name VARCHAR(64), sale_quantity INTEGER, sale_ID INTEGER)
 MODIFIES SQL DATA
 BEGIN
-	INSERT INTO SaleItem(SI_ID, sale_ID, qty)
-	VALUES ( (SELECT SI_ID FROM StockItem WHERE Name = item_name), sale_ID, sale_quantity);
+	INSERT INTO SaleItem(SI_ID, sale_ID, qty, Price)
+	VALUES ( (SELECT SI_ID FROM StockItem WHERE Name = item_name), sale_ID, sale_quantity, (SELECT Price FROM StockItem WHERE Name = item_name));
 END
 //
 
